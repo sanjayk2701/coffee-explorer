@@ -1,0 +1,44 @@
+  .delete-modal {
+      padding: 1rem;
+    .delete-text {
+      font-size: 1em;
+      color: #333;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    
+    .delete-button-modal {
+    background-color: #7B3F00;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 120px;
+    // height:  38px;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+
+    &:hover {
+      background-color: #a85c12;
+      //   font-size: 0.95rem;
+    }
+
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+  }
+
+  }

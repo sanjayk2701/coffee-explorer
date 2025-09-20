@@ -1,0 +1,28 @@
+/* Global styles for the entire app */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;  
+   --text-color: #FAF9F6; 
+   --button-color: #E97451
+   --secondary-button-Color: #fdfbd4;
+   --secodary-button-hoverColor:#e6e3a8;
+   --delete-button-color:#7B3F00;
+   --delete-button-hoverColor:#a85c12;
+}
+
+.App {
+  min-height: 100vh;                                 
+  background-image: url('../assets/bg3.jpg');   
+  background-size: cover;                          
+  background-position: center;                       
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  color: #fff;                                      
+}
+
+
