@@ -117,7 +117,11 @@ const CoffeeGallery = () => {
       </div>
 
       {loading ? (
-        <p>Loading...</p>
+        <div className="pageLoader">
+          <p>Coffee Loading</p>
+         <Loader size={20} color="#fff"/>
+
+        </div>
       ) : (
         <div>
           <div className="coffee-grid">
