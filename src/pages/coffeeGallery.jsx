@@ -10,6 +10,7 @@ import EditModal from "../modals/editModal/editModal";
 import DeleteModal from "../modals/deleteModal/deleteModal";
 import PageLoader from "../components/loader/pageLoader";
 import useDebounce from "../customHook/useDebounce";
+import Loader from "../components/loader/Loader";
 const CoffeeGallery = () => {
   const [coffees, setCoffees] = useState([]);
   // const [filteredCoffees, setFilteredCoffees] = useState([]);

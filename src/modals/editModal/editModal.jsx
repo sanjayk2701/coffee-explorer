@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import "./editModal.scss"; // ✅ reuse same scss for consistency
+import { toast } from "react-toastify";
 
 const ingredientsList = [
   "Espresso",
@@ -45,15 +46,37 @@ const EditModal = ({ open, onClose, coffee, onUpdate }) => {
   // Populate fields when coffee is passed
 
   useEffect(() => {
-  if (coffee && open) {
-    setTitle(coffee.title || "");
-    setDescription(coffee.description || "");
-    setIngredients(coffee.ingredients || []);
-  }
-}, [coffee, open]); // <-- add `open` as dependency
-
+    if (coffee && open) {
+      setTitle(coffee.title || "");
+      setDescription(coffee.description || "");
+      setIngredients(coffee.ingredients || []);
+    }
+  }, [coffee, open]); // <-- add `open` as dependency
 
   const handleUpdate = () => {
+    if (!title.trim()) {
+      toast.error("Title cannot be empty");
+      return;
+    }
+    if (!description.trim()) {
+      toast.error("Description cannot be empty");
+      return;
+    }
+    if (ingredients.length === 0) {
+      toast.error("Please fill all fields before adding coffee!");
+      return;
+    }
+
+    const noChanges =
+      title === (coffee?.title || "") &&
+      description === (coffee?.description || "") &&
+      JSON.stringify(ingredients) === JSON.stringify(coffee?.ingredients || []);
+
+    if (noChanges) {
+      toast.warning("No changes made", { icon: "⚠️" });
+      onClose();
+      return;
+    }
     setLoading(true);
 
     setTimeout(() => {
@@ -64,18 +87,18 @@ const EditModal = ({ open, onClose, coffee, onUpdate }) => {
         ingredients,
       };
       onUpdate(updatedCoffee);
+      toast.success("Coffee Updated Successfully");
       onClose();
       setLoading(false);
     }, 2000); // mimic API update delay
   };
 
   const handleClose = () => {
-  setTitle("");
-  setDescription("");
-  setIngredients([]);
-  onClose();
-};
-
+    setTitle("");
+    setDescription("");
+    setIngredients([]);
+    onClose();
+  };
 
   const handleDeleteIngredient = (ingredientToDelete) => {
     setIngredients((prev) =>
@@ -88,7 +111,7 @@ const EditModal = ({ open, onClose, coffee, onUpdate }) => {
       <Box className="modal-box">
         {/* Header */}
         <div className="modal-header">
-          <h2 style={{margin:"0"}}>Modify Coffee</h2>
+          <h2 style={{ margin: "0" }}>Modify Coffee</h2>
           <IconButton onClick={handleClose}>
             <CloseIcon />
           </IconButton>
@@ -153,7 +176,8 @@ const EditModal = ({ open, onClose, coffee, onUpdate }) => {
             onClick={handleUpdate}
             disabled={loading}
           >
-            {loading ? <div className="loader"></div> : "Update Coffee"}
+            {/* {loading ? <div className="loader"></div> : "Modify Coffee"} */}
+            {loading ? <Loader size={20} color="#fff" /> : "Modify Coffee"}
           </button>
         </div>
       </Box>

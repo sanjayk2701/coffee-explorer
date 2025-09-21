@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Modal, Box, IconButton, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import "./deleteModal.scss"; // reuse existing modal styles
-
+import { toast } from "react-toastify";
+import Loader from "../../components/loader/Loader";
 const DeleteModal = ({ open, onClose, onDelete, coffee }) => {
   const [loading, setLoading] = useState(false);
 
@@ -11,6 +12,8 @@ const DeleteModal = ({ open, onClose, onDelete, coffee }) => {
     setTimeout(() => {
       onDelete(coffee);
       setLoading(false);
+      toast.success("Coffee Deleted Successfully");
+
       onClose();
     }, 1500); // 1.5s loader to simulate API
   };
@@ -20,7 +23,7 @@ const DeleteModal = ({ open, onClose, onDelete, coffee }) => {
       <Box className="modal-box delete-modal">
         {/* Header */}
         <div className="modal-header">
-          <h2 style={{margin:"0"}}>Delete Coffee</h2>
+          <h2 style={{ margin: "0" }}>Delete Coffee</h2>
           <IconButton onClick={onClose}>
             <CloseIcon />
           </IconButton>
@@ -38,7 +41,8 @@ const DeleteModal = ({ open, onClose, onDelete, coffee }) => {
             onClick={handleDelete}
             disabled={loading}
           >
-            {loading ? <div className="loader"></div> : "Delete"}
+            {loading ? <Loader size={20} color="#fff" /> : "Delete"}
+            
           </button>
         </div>
       </Box>

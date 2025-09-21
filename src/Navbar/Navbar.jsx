@@ -1,13 +1,14 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import "./Navbar.scss";
 import { FaCoffee, FaBars } from "react-icons/fa"; // Coffee icon + Hamburger icon
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  // const toggleMenu = () => {
+  //   setIsOpen(!isOpen);
+  // };
 
   return (
     <nav className="navbar">
@@ -16,11 +17,11 @@ const Navbar = () => {
         <span className="navbar-title">Coffee Explorer</span>
       </div>
 
-      <div className="navbar-right" onClick={toggleMenu}>
+      <div className="navbar-right" >
         <FaBars className="hamburger-icon" />
       </div>
 
-      {isOpen && (
+      {/* {isOpen && (
         <div className="dropdown-menu">
           <ul>
             <li>Home</li>
@@ -28,7 +29,7 @@ const Navbar = () => {
             <li>Contact</li>
           </ul>
         </div>
-      )}
+      )} */}
     </nav>
    
   );

@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import "./CoffeeCard.scss";
-
 const CoffeeCard = ({ coffee, onEdit, onDelete }) => {
   // Pick a random background color ONCE per card render
   const backgroundColors = ["#0f5132", "#9c6f44", "#a94c4c"];
